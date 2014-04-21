@@ -8,7 +8,7 @@ import static org.lwjgl.opengl.GL11.*;
 
 import java.util.Random;
 
-class Demo {
+public class Demo {
 
     Control input;
     Camera cam;
@@ -24,7 +24,7 @@ class Demo {
     boolean lock;
     boolean is_ai;
 
-    Demo() {
+    public Demo() {
         //        step = 60;
         step = 60;
         init_Display();
