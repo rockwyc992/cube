@@ -14,7 +14,7 @@ public class Demo {
     Camera cam;
     AI ai;
 
-    Cube[][][] cubes;
+    Rubiks cubes;
 
     Random rand = new Random();
 
@@ -25,7 +25,6 @@ public class Demo {
     boolean is_ai;
 
     public Demo() {
-        //        step = 60;
         step = 60;
         init_Display();
         init_cubes();
@@ -153,13 +152,8 @@ public class Demo {
                 if(input.controller.getAxisValue(0) == 1.0)
                     cam.x = cam.y = cam.rx = cam.ry = cam.z = cam.rz = 0;
 
-            for(int i=0 ; i<3 ; i++) {
-                for(int j=0 ; j<3 ; j++) {
-                    for(int k=0 ; k<3 ; k++) {
-                        cubes[i][j][k].show(mode, degree);
-                    }
-                }
-            }
+            cubes.show(mode, degree);
+
             Display.update();
 
         }
@@ -178,7 +172,7 @@ public class Demo {
         }
         lock = true;
         degree = -90f;
-        Cube.change_color(cubes, mode);
+        cubes.change_color(mode);
         this.mode = mode;
     }
 
@@ -201,7 +195,8 @@ public class Demo {
     }
 
     void init_cubes() {
-        cubes = Cube.new_many();
+        cubes = new Rubiks();
+        mode = Global.Mode_Null;
     }
 
     void clean_up() {
