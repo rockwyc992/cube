@@ -25,7 +25,7 @@ public class Demo {
     boolean is_ai;
 
     public Demo() {
-        step = 60;
+        step = -1;
         init_Display();
         init_cubes();
         init_ai();
@@ -39,6 +39,7 @@ public class Demo {
 
     void game_loop() {
         while(!Display.isCloseRequested()) {
+        
             if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
                 break;
             }
@@ -64,6 +65,7 @@ public class Demo {
                     degree = 0f;
                     lock = false;
                     mode = 0;
+                    Control.leap_step = Global.Mode_Null;
                 }
             } else if(is_ai){
                 if(ai.solve()) {
@@ -72,6 +74,8 @@ public class Demo {
                     is_ai = false;
                     System.out.println("AI do it!!!!");
                 }
+            } else if(Control.leap_step != Global.Mode_Null) {
+                lock_button(Control.leap_step);
             } else if(step >= 0) {
                 lock_button(rand.nextInt(50));
                 step--;
@@ -154,8 +158,8 @@ public class Demo {
 
             cubes.show(mode, degree);
 
-            Display.update();
 
+            Display.update();
         }
     }
 
@@ -167,7 +171,7 @@ public class Demo {
         } else if(mode == Global.Mode_xNull) {
             return;
         } else if(mode == Global.Mode_AI) {
-            is_ai = true;
+            is_ai = false;
             return;
         }
         lock = true;

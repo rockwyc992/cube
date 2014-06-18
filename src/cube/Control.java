@@ -1,5 +1,7 @@
 package cube;
 
+import java.util.*;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Controller;
@@ -9,6 +11,9 @@ class Control {
 
     Controller controller;
     boolean lock;
+    init_Leap init;
+    Thread leap;
+    static int leap_step;
 
     float x;
     float y;
@@ -32,6 +37,12 @@ class Control {
             button_status = new boolean[controller.getButtonCount()];
             pov_events = new boolean[4];
             pov_status = new boolean[4];
+        }
+        if(Global.Is_Leap) {
+            init = new init_Leap();
+            leap = new Thread(init);
+            leap.start();
+            leap_step = Global.Mode_Null;
         }
     }
 
@@ -222,6 +233,74 @@ class Control {
             {
                 System.out.println(controller.getName());
                 break;
+            }
+        }
+    }
+
+    class init_Leap implements Runnable {
+
+        public void run() {
+            Leap_listener listener = new Leap_listener();
+            com.leapmotion.leap.Controller controller = new com.leapmotion.leap.Controller();
+            controller.addListener(listener);
+            try {
+            System.in.read();
+            } catch (Exception e) {
+            }
+            controller.removeListener(listener);
+        }
+    }
+
+    static void leap_control(String str, int num) {
+        if(leap_step != Global.Mode_Null)
+            return;
+        if(str.matches("B")) {
+            if(num == 1) {
+                leap_step = Global.Mode_B1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_b;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xF1;
+            }
+        } else if(str.matches("F")) {
+            if(num == 1) {
+                leap_step = Global.Mode_F1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_f;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xB1;
+            }
+        } else if(str.matches("U")) {
+            if(num == 1) {
+                leap_step = Global.Mode_U1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_u;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xD1;
+            }
+        } else if(str.matches("D")) {
+            if(num == 1) {
+                leap_step = Global.Mode_D1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_d;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xU1;
+            }
+        } else if(str.matches("R")) {
+            if(num == 1) {
+                leap_step = Global.Mode_R1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_r;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xL1;
+            }
+        } else if(str.matches("L")) {
+            if(num == 1) {
+                leap_step = Global.Mode_L1;
+            } else if(num == 2) {
+                leap_step = Global.Mode_l;
+            } else if(num == 3) {
+                leap_step = Global.Mode_xR1;
             }
         }
     }

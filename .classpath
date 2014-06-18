@@ -12,6 +12,11 @@
             <attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
         </attributes>
     </classpathentry>
+    <classpathentry kind="lib" path="libs/lwjgl/jar/LeapJava.jar">
+        <attributes>
+            <attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
+        </attributes>
+    </classpathentry>
     <classpathentry kind="lib" path="libs/lwjgl/jar/jinput.jar" />
     <classpathentry kind="output" path="bin"/>
 </classpath>

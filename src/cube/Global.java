@@ -12,6 +12,7 @@ class Global {
     static int Cube_Side = 4;
     static boolean Is_Gamepad = false;
     static boolean Is_Demo = false;
+    static boolean Is_Leap = true;
     
     static int Button_A = 0;
     static int Button_B = 1;
