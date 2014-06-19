@@ -9,19 +9,24 @@ class AI {
 
     AI(Rubiks cubes) {
         this.cubes = cubes;
-        step = new PriorityQueue<Integer>();
+        step = new LinkedList<Integer>();
+    }
+
+    void hack(Stack<Integer> stack) {
+        int mode;
+        while(!stack.isEmpty()) {
+            mode = stack.pop();
+            if(mode >= 25) {
+                mode -= 25;
+            } else {
+                mode += 25;
+            }
+            step.add(mode);
+        }
     }
     
     boolean solve() {
         if (!step.isEmpty()) {
-            return true;
-        } else if (solve_Cross()) {
-            return true;
-        } else if (solve_F2L()) {
-            return true;
-        } else if (solve_OLL()) {
-            return true;
-        } else if (solve_PLL()) {
             return true;
         }
         return false;

@@ -24,10 +24,6 @@ class Cube{
         glPushMatrix(); {
             glTranslatef(0,0,-40); 
 
-            if(Global.Is_Demo) {
-                glRotatef(45f, 0f, 7f,0f);
-                glRotatef(20f, 7f, 0f,7f);
-            }
 
             rotate(mode, degree);
             where();
@@ -163,7 +159,7 @@ class Cube{
             F1(degree);
         } else if(mode == Global.Mode_xU3) {
             xU1(degree);
-            u(degree);
+            d(degree);
             D1(degree);
         } else if(mode == Global.Mode_xD3) {
             xD1(degree);

@@ -6,7 +6,7 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import static org.lwjgl.opengl.GL11.*;
 
-import java.util.Random;
+import java.util.*;
 
 public class Demo {
 
@@ -15,6 +15,7 @@ public class Demo {
     AI ai;
 
     Rubiks cubes;
+    Stack<Integer> stack;
 
     Random rand = new Random();
 
@@ -25,7 +26,7 @@ public class Demo {
     boolean is_ai;
 
     public Demo() {
-        step = -1;
+        step = 30;
         init_Display();
         init_cubes();
         init_ai();
@@ -39,7 +40,7 @@ public class Demo {
 
     void game_loop() {
         while(!Display.isCloseRequested()) {
-        
+
             if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
                 break;
             }
@@ -67,7 +68,7 @@ public class Demo {
                     mode = 0;
                     Control.leap_step = Global.Mode_Null;
                 }
-            } else if(is_ai){
+            } else if(is_ai) {
                 if(ai.solve()) {
                     lock_button(ai.next());
                 } else {
@@ -76,7 +77,7 @@ public class Demo {
                 }
             } else if(Control.leap_step != Global.Mode_Null) {
                 lock_button(Control.leap_step);
-            } else if(step >= 0) {
+            } else if(step >= 0 && Global.Is_AI) {
                 lock_button(rand.nextInt(50));
                 step--;
             }else if(!Global.Is_Gamepad) {
@@ -158,7 +159,6 @@ public class Demo {
 
             cubes.show(mode, degree);
 
-
             Display.update();
         }
     }
@@ -170,21 +170,40 @@ public class Demo {
             return;
         } else if(mode == Global.Mode_xNull) {
             return;
-        } else if(mode == Global.Mode_AI) {
-            is_ai = false;
-            return;
-        }
+        } else if(mode == Global.Mode_AI && stack != null) {
+            if(stack.size() == 0) {
+                step = 30;
+            } else {
+                is_ai = true;
+                ai.hack(stack);
+                return;
+            }
+        } 
         lock = true;
         degree = -90f;
         cubes.change_color(mode);
         this.mode = mode;
+        if(!is_ai && stack!=null) {
+            stack.push(mode);
+        }
     }
 
     void init_ai() {
-        ai = new AI(cubes);
+        if(Global.Is_AI) {
+            ai = new AI(cubes);
+            stack = new Stack<Integer>();
+        }
     }
 
     void init_Display() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Is Gamepad? (Y/n)");
+        Global.Is_Gamepad = !scan.nextLine().matches("(N|n).*");
+        System.out.println("Is Leap? (Y/n)");
+        Global.Is_Leap = !scan.nextLine().matches("(N|n).*");
+        System.out.println("Is AI? (Y/n)");
+        Global.Is_AI = !scan.nextLine().matches("(N|n)") && Global.Is_Gamepad;
+
         try {
             Display.setDisplayMode(new DisplayMode(800,600));
             Display.setFullscreen(true);

@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-    <classpathentry kind="src" path="src"/>
-    <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-    <classpathentry kind="lib" path="libs/lwjgl/jar/lwjgl.jar">
-        <attributes>
-            <attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="lib" path="libs/lwjgl/jar/lwjgl_util.jar">
-        <attributes>
-            <attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="lib" path="libs/lwjgl/jar/LeapJava.jar">
-        <attributes>
-            <attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
-        </attributes>
-    </classpathentry>
-    <classpathentry kind="lib" path="libs/lwjgl/jar/jinput.jar" />
-    <classpathentry kind="output" path="bin"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="libs/lwjgl/jar/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/lwjgl/jar/lwjgl_util.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/lwjgl/jar/LeapJava.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="libs/lwjgl/native/linux"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/lwjgl/jar/jinput.jar"/>
+	<classpathentry kind="lib" path="/usr/lib/jvm/java-7-openjdk/jre/lib/ext/pulse-java.jar"/>
+	<classpathentry kind="output" path="bin"/>
 </classpath>

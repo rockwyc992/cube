@@ -23,10 +23,20 @@ class Leap_listener extends Listener {
         System.out.println("Exited");
     }
 
+    int num = 0;
+    int flag = 0;
+    int num_back = 0;
     public void onFrame(Controller controller) {
         Frame frame = controller.frame();
         GestureList gestures = frame.gestures();
-        int num = gestures.count();
+
+        num_back = num;
+        num = gestures.count();
+        if(num == num_back) {
+            flag++;
+        } else {
+            flag = 0;
+        }
 
         Gesture gesture = gestures.get(0);
         Gesture.Type type = gesture.type();
@@ -35,9 +45,11 @@ class Leap_listener extends Listener {
             CircleGesture circle = new CircleGesture(gesture);
 
             if (circle.pointable().direction().angleTo(circle.normal()) <= Math.PI/4) {
-                Control.leap_control("F", num);
+                if(flag > 5)
+                    Control.leap_control("F", num);
             } else {
-                Control.leap_control("B", num);
+                if(flag > 5)
+                    Control.leap_control("B", num);
             }
         } else if (type == Gesture.Type.TYPE_SWIPE) {
             SwipeGesture swipe = new SwipeGesture(gesture);
@@ -48,13 +60,17 @@ class Leap_listener extends Listener {
             Vector right = new Vector( 1.0f,  0.0f, 0.0f);
 
             if(vector.angleTo(up) < 0.5) {
-                Control.leap_control("R", num);
+                if(flag > 5)
+                    Control.leap_control("R", num);
             } else if(vector.angleTo(down) < 0.5) {
-                Control.leap_control("L", num);
+                if(flag > 5)
+                    Control.leap_control("L", num);
             } else if(vector.angleTo(left) < 0.5) {
-                Control.leap_control("U", num);
+                if(flag > 5)
+                    Control.leap_control("U", num);
             } else if(vector.angleTo(right) < 0.5) {
-                Control.leap_control("D", num);
+                if(flag > 5)
+                    Control.leap_control("D", num);
             }
         }
     }

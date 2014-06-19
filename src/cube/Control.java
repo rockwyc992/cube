@@ -1,7 +1,5 @@
 package cube;
 
-import java.util.*;
-
 import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Controller;

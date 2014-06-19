@@ -10,8 +10,8 @@ class Global {
     static int Forward_Right = 5;
 
     static int Cube_Side = 4;
-    static boolean Is_Gamepad = false;
-    static boolean Is_Demo = false;
+    static boolean Is_Gamepad = true;
+    static boolean Is_AI = true;
     static boolean Is_Leap = true;
     
     static int Button_A = 0;
