@@ -1,5 +1,5 @@
 eclipse.preferences.version=1
-org.eclim.java.run.jvmargs=["-Djava.library.path\=/usr/share/lwjgl/native/linux:/usr/lib/Leap"]
+org.eclim.java.run.jvmargs=["-Djava.library.path\=libs/lwjgl/native/linux:libs/leap"]
 org.eclim.java.run.mainclass=Main
 org.eclim.user.email=rockwyc992@gmail.com
 org.eclim.user.name=rockwyc992

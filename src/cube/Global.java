@@ -82,6 +82,9 @@ class Global {
     static int Mode_xR3 = 49;
     static int Mode_AI = 50;
 
+    Global() {
+    }
+
     static Point[] Color() {
         Point[] colors = new Point[6];
 

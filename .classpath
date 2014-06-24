@@ -18,6 +18,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="libs/lwjgl/jar/jinput.jar"/>
-	<classpathentry kind="lib" path="/usr/lib/jvm/java-7-openjdk/jre/lib/ext/pulse-java.jar"/>
+    <!--	<classpathentry kind="lib" path="/usr/lib/jvm/java-7-openjdk/jre/lib/ext/pulse-java.jar"/> -->
 	<classpathentry kind="output" path="bin"/>
 </classpath>

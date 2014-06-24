@@ -5,6 +5,9 @@ import com.leapmotion.leap.*;
 
 class Leap_listener extends Listener {
 
+    Leap_listener() {
+    }
+
     public void onInit(Controller controller) {
         System.out.println("Initialized");
     }

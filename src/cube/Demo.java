@@ -26,7 +26,7 @@ public class Demo {
     boolean is_ai;
 
     public Demo() {
-        step = 30;
+        init_virable();
         init_Display();
         init_cubes();
         init_ai();
@@ -53,15 +53,19 @@ public class Demo {
             cam.use_view();
             input.update_keys();
 
-            if(Global.Is_Gamepad)
-                if(input.button_Back_pressed())
+            if(Global.Is_Gamepad) {
+                if(input.button_Back_pressed()) {
                     break;
+                }
+            }
 
             if(lock) {
-                if(Keyboard.isKeyDown(Keyboard.KEY_TAB))
+                if(Keyboard.isKeyDown(Keyboard.KEY_TAB)) {
                     degree += 30f;
-                else
+                } else {
                     degree += 5f;
+                }
+                
                 if(degree > 0f) {
                     degree = 0f;
                     lock = false;
@@ -73,7 +77,9 @@ public class Demo {
                     lock_button(ai.next());
                 } else {
                     is_ai = false;
-                    System.out.println("AI do it!!!!");
+                    if(cubes.win()) {
+                        System.out.println("AI do it!!!!");
+                    }
                 }
             } else if(Control.leap_step != Global.Mode_Null) {
                 lock_button(Control.leap_step);
@@ -153,12 +159,13 @@ public class Demo {
                     lock_button(Global.Mode_AI);
                 }
 
-            if(Global.Is_Gamepad)
-                if(input.controller.getAxisValue(0) == 1.0)
+            if(Global.Is_Gamepad) {
+                if(input.controller.getAxisValue(0) == 1.0) {
                     cam.x = cam.y = cam.rx = cam.ry = cam.z = cam.rz = 0;
+                }
+            }
 
             cubes.show(mode, degree);
-
             Display.update();
         }
     }
@@ -196,14 +203,6 @@ public class Demo {
     }
 
     void init_Display() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Is Gamepad? (Y/n)");
-        Global.Is_Gamepad = !scan.nextLine().matches("(N|n).*");
-        System.out.println("Is Leap? (Y/n)");
-        Global.Is_Leap = !scan.nextLine().matches("(N|n).*");
-        System.out.println("Is AI? (Y/n)");
-        Global.Is_AI = !scan.nextLine().matches("(N|n)") && Global.Is_Gamepad;
-
         try {
             Display.setDisplayMode(new DisplayMode(800,600));
             Display.setFullscreen(true);
@@ -224,6 +223,19 @@ public class Demo {
 
     void clean_up() {
         Display.destroy();
+        System.exit(0);
+    }
+
+    void init_virable() {
+        step = 30;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Is Gamepad? (Y/n)");
+        Global.Is_Gamepad = !scan.nextLine().matches("(N|n).*");
+        System.out.println("Is Leap? (Y/n)");
+        Global.Is_Leap = !scan.nextLine().matches("(N|n).*");
+        System.out.println("Is AI? (Y/n)");
+        Global.Is_AI = !scan.nextLine().matches("(N|n)") && Global.Is_Gamepad;
+        scan.close();
     }
 
 }

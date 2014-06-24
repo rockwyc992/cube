@@ -18,6 +18,35 @@ class Rubiks {
         }
     }
 
+    boolean win() {
+        for(int i=0 ; i<6 ; i++) {
+            if(!check_color_same(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    boolean check_color_same(int forward) {
+        Point color = cubes[0][0][0].colors[forward];
+        for(int i=0 ; i<3 ; i++) {
+            for(int j=0 ; j<3 ; j++) {
+                for(int k=0 ; k<3 ; k++) {
+                    if(color.x != cubes[i][j][k].colors[forward].x) {
+                        return false;
+                    }
+                    if(color.y != cubes[i][j][k].colors[forward].y) {
+                        return false;
+                    }
+                    if(color.z != cubes[i][j][k].colors[forward].z) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+
     Cube cubes(int x, int y, int z) {
         return cubes[x][y][z];
     }
@@ -37,13 +66,6 @@ class Rubiks {
                 }
             }
         }
-    }
-
-    void change_locate(int a, int b, int c, int d) {
-        int t = a;
-        a = b;
-        b = c;
-        c = d;
     }
 
     void change_four_color(Point a, Point b, Point c, Point d) {

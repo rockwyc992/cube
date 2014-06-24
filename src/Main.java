@@ -1,6 +1,9 @@
 import cube.Demo;
 
-class Main {
+public class Main {
+
+    Main() {
+    }
 
     public static void main(String[] argv) {
         new Demo();

@@ -242,8 +242,10 @@ class Control {
             com.leapmotion.leap.Controller controller = new com.leapmotion.leap.Controller();
             controller.addListener(listener);
             try {
-            System.in.read();
+//                System.in.read();
+                Thread.sleep(9999999);
             } catch (Exception e) {
+                e.printStackTrace();
             }
             controller.removeListener(listener);
         }
